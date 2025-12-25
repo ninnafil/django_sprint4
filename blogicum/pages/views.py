@@ -4,10 +4,12 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 class About(TemplateView):
-    """Страница 'О проекте'"""
+    """Статичная страница с информацией о проекте"""
+
     template_name = 'pages/about.html'
 
 
 class Rules(TemplateView):
-    """Страница 'Правила'"""
+    """Статичная страница с описанием правил сайта"""
+
     template_name = 'pages/rules.html'

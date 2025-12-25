@@ -35,7 +35,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'text', 'pub_date', 'location', 'category', 'image')
-        
+
         widgets = {
             'pub_date': forms.DateTimeInput(
                 attrs={'type': 'datetime-local'}
@@ -50,30 +50,30 @@ class PostForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-select'}),
             'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
-        
+
         help_texts = {
             'pub_date': 'Если установить дату и время в будущем — '
-                       'можно делать отложенные публикации.',
+                        'можно делать отложенные публикации.',
             'image': 'Загрузите изображение для публикации (необязательно)',
         }
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
+
         # Фильтруем только опубликованные категории и локации
         self.fields['category'].queryset = Category.objects.filter(
             is_published=True
         ).order_by('title')
-        
+
         self.fields['location'].queryset = Location.objects.filter(
             is_published=True
         ).order_by('name')
-        
+
         # Устанавливаем текущую дату по умолчанию для нового поста
         if not self.instance.pk:
             now = timezone.now()
             self.initial['pub_date'] = now.strftime('%Y-%m-%dT%H:%M')
-        
+
         # Для редактирования - форматируем дату из объекта
         elif self.instance.pub_date:
             self.initial['pub_date'] = self.instance.pub_date.strftime('%Y-%m-%dT%H:%M')

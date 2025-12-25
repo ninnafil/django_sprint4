@@ -129,7 +129,7 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         Возвращает URL для перенаправления после успешного сохранения.
         Перенаправляет на страницу профиля текущего пользователя.
         """
-        return reverse_lazy('blog:profile', kwargs={
+        return reverse('blog:profile', kwargs={
             'username': self.request.user.username
         })
 
@@ -156,7 +156,7 @@ class PostCreateView(LoginRequiredMixin, PostMixin, CreateView):
         Возвращает URL для перенаправления после создания поста.
         Перенаправляет на страницу профиля автора.
         """
-        return reverse_lazy('blog:profile', kwargs={
+        return reverse('blog:profile', kwargs={
             'username': self.request.user.username
         })
 
