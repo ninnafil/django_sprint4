@@ -35,7 +35,7 @@ Frontend: HTML, CSS (шаблоны Django)
 
 1. Клонирование репозитория:
 
-git clone <https://github.com/ninnafil/django_sprint4.git>
+git clone <https://github.com/ninnafil/blog-platform.git>
 cd django_sprint4
 
 2. Создание и активация виртуального окружения:
